@@ -2,13 +2,8 @@
 
 This repository is just for storing every new kata I solve. Aiming to get more knowledge on Python, Elixir and Go Currently trying to do a kata a day in Python
 
-[![](https://www.codewars.com/users/BabiRuiva/badges/large)](https://www.codewars.com/users/BabiRuiva)
+[![My Profile](https://www.codewars.com/users/BabiRuiva/badges/large)](https://www.codewars.com/users/BabiRuiva)
 
-<p align="center">
-	<a href="https://www.codewars.com/users/BabiRuiva">
-  	 <img src="https://www.codewars.com/users/BabiRuiva/badges/large"/> 
-  	</a>
-</p>
 ## Amount of completed Katas per Language
 
 | Language | Total |
