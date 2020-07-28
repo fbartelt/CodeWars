@@ -159,5 +159,5 @@ def execute(code):
 execute("F10R1F2L5F2")
 execute("F5(R1F2)2L3F1")
 execute("F5L1F4L1F1F3L1F1R1F2")
-execute("F10")
+(execute("F10"))
 execute("F2LF3LF4LF5LF6LF7LF8LF9LF10")
