@@ -1,11 +1,12 @@
 # to help with debugging
+import re
 def unbleach(n):
     return n.replace(' ', 's').replace('\t', 't').replace('\n', 'n')
 
 # solution
 def whitespace(code, inp = ''):
     output = ''
-    stack = []
+    stack, subroutines = [], []
     heap, label_dict = {}, {}
     imp_dict = {' ': 1, '\t ' : 2, '\t\t': 3 , '\t\n': 4, '\n': 5 }
     #       stack  arithmetic    heap    input/output  flow control
@@ -19,6 +20,7 @@ def whitespace(code, inp = ''):
         print('stack', stack, 'heap', heap)
         cmd = code[control]
         if cmd == ' ': ##IMP STACK
+            print('STACK')
             print('haro', control)
             imps.append(1)
             control += stack_manipulation(code[control+1 :], stack)
@@ -28,9 +30,11 @@ def whitespace(code, inp = ''):
             #break
         elif cmd == '\t':
             if code[control+1] == ' ':
+                print('ARITH')
                 arithmetic(code[control+2: control+4], stack)
                 control += 4
             elif code[control+1] == '\t':
+                print('HEAP')
                 print('HERRE')
                 print(list(code[control:]))
                 print(list(code[control+2:control+4]))
@@ -38,13 +42,22 @@ def whitespace(code, inp = ''):
                 heap_access(code[control+2: control+3], stack, heap)
                 control += 3
             elif code[control+1] == '\n':
+                print('INPUT')
                 inp, output = input_output(code[control+2: control+4], stack, heap, inp, output)
-                print(list(code[control:control+4]), code[control+3])
+                print('DUNN',list(code[control:control+4]), code[control+3])
+                print('heap==',heap, 'stack==',stack)
                 control += 4
         elif cmd == '\n':
-            control = flow_control(code, control+1, stack, label_dict)
+            print('FLOW')
+            print(list(code[control:]))
+            #break
+            print('CONTROL 111', control)
+            control = flow_control(code, control+1, stack, label_dict, subroutines)
+            print('dict',label_dict)
+            print('CONTROL 222', control)
             if control == -1:
                 print('brekou')
+                print('stack == ', stack, 'heap == ', heap, 'dict == ', label_dict)
                 break
         else: 
             raise SyntaxError('non command')
@@ -119,7 +132,7 @@ def stack_manipulation(code, stack):
 
 def arithmetic(command, stack):
     #command = code[0:2]
-    if len(stack) < 2: raise ValueError('Attemptin arithmetich with stack with less than 2 numbers')
+    if len(stack) < 2: raise ValueError('Attempting arithmetic with stack with less than 2 numbers')
     if command == '  ':
         stack.append(stack.pop() + stack.pop())
     elif command == ' \t':
@@ -147,40 +160,69 @@ def heap_access(command, stack, heap): ## command = code[i:i+2]
 
 def input_output(command, stack, heap, inp, output):
     print('cehogu oq', stack, list(command))
+    print('in',inp)
     if command == '  ':
         output += chr(stack.pop())
     elif command == ' \t':
         output += str(stack.pop())
     elif command == '\t ':
-        heap.update({stack.pop() : ord(inp.pop())})
+        heap.update({stack.pop() : ord(inp.pop(0))})
     elif command == '\t\t':
-        i, number = parse_number(inp)
-        heap.update({stack.pop() : number})
-        inp = inp[i:]
+        number , num_s = inp.pop(0), ''
+        print('ff', list(number),list(num_s))
+        while number != '\n':
+            num_s += number
+            number = inp.pop(0) 
+        heap.update({stack.pop() : int(num_s)})
     return inp, output
 
-def flow_control(code, idx, stack, label_dict):
+def flow_control(code, idx, stack, label_dict, subroutines):
     command = code[idx:idx+2]
     if command[0] == ' ':
+        print('deu espaço')
         i, label = parse_label(code[idx+2:])
+        print(list(code[i:]))
         if command[1] == ' ':
+            print('esp esp')
             label_dict.update({label : idx+2+i})
-        elif command[1] == '\t':
-            pass
-        elif command[1] == '\n':
-            pass
-    elif command == '\t ':
+            i += idx+2
+        elif command[1] in ['\t', '\n']:
+            if label in label_dict.keys():
+                print('wut')
+                print(list(label), label_dict)
+                if command[1] == '\t' : subroutines.append(idx+2+i)
+                i = label_dict[label]
+            else:
+                m = re.search(r'(\n  ' + label + '\n)', code[i:])
+                print(m)
+                return -1
+                if m:
+                    if command[1] == '\t' : subroutines.append(idx+2+i)
+                    i += m.start()
+                else:
+                    raise ValueError('Label undefined')
+    elif command[0] == '\t':
         i, label = parse_label(code[idx+2:])
         value = stack.pop()
-        if not value:
-            i = label_dict[label]
-    elif command == '\t\t':
-        i, label = parse_label(code[idx+2:])
-        value = stack.pop()
-        if value < 0:
-            i = label_dict[label]
+        if (not value and command[1] == ' ') or (value < 0 and command[1] == '\t'):
+            print(stack, value)
+            if label in label_dict.keys():
+                print('something wrong')
+                return -1
+                i = label_dict[label]
+            else:
+                print('searching for label', list(label))
+                m = re.search(r'(\n  ' + label + '\n)', code[i:])
+                print(m, )
+                #return -1
+                if m:
+                    i += m.start()+idx+2
+                else:
+                    raise ValueError('Label undefined')
+        else:
+            i += idx+2
     elif command == '\t\n':
-        pass
+        i = subroutines.pop()
     elif command == '\n\n':
         i = -1
     return i 
@@ -191,9 +233,12 @@ def flow_control(code, idx, stack, label_dict):
 #print(arithmetic('\t\t',[1,2,3,4]))
 #print(stack_manipulation(' 				 	 	 \n',[1,2,3]))
 #whitespace('   \t  as//  / \t\n\t\n bbb \n\n\n')
-unb = 'ssstntnttssstsntnttsssttntnttsssttntttssstsntttssstnttttnsttnsttnstnnn'
+unb = 'ssstntnstntssnssstnnsssnnnn'
 code = unb.replace('s', ' ').replace('t', '\t').replace('n', '\n')
-whitespace(code)
+whitespace(code, '')
+#import re
+# mm = re.search(r'(\n  ([^\S\t\n]*?)\n)', code)
+# print(list(mm[0]),list(mm[2]))
 #print(parse_number(' 				 	 	 \n'))
 
 
