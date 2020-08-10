@@ -8,7 +8,7 @@ This repository is just for storing every new kata I solve. Aiming to get more k
 
 | Language | Total |
 | :------: | :---: |
-|  Python  |  38   |
+|  Python  |  39   |
 |  Elixir  |  23   |
 | Haskell  |   5   |
 
@@ -21,7 +21,7 @@ This repository is just for storing every new kata I solve. Aiming to get more k
 |  1   |   2   |
 |  2   |   3   |
 |  3   |   4   |
-|  4   |   9   |
+|  4   |  10   |
 |  5   |   4   |
 |  6   |  11   |
 |  7   |   3   |
