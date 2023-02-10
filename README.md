@@ -2,13 +2,13 @@
 
 This repository is just for storing every new kata I solve. Aiming to get more knowledge on Python, Elixir and Go Currently trying to do a kata a day in Python
 
-[![My Profile](https://www.codewars.com/users/fbartelt/badges/large)](https://www.codewars.com/users/**fbartelt**)
+[![My Profile](https://www.codewars.com/users/fbartelt/badges/large)](https://www.codewars.com/users/fbartelt)
 
 ## Amount of completed Katas per Language
 
 | Language | Total |
 | :------: | :---: |
-|  Python  |  42   |
+|  Python  |  43   |
 |  Elixir  |  23   |
 | Haskell  |   5   |
 
@@ -20,7 +20,7 @@ This repository is just for storing every new kata I solve. Aiming to get more k
 | :--: | :---: |
 |  1   |   2   |
 |  2   |   3   |
-|  3   |   4   |
+|  3   |   5   |
 |  4   |  12   |
 |  5   |   4   |
 |  6   |  12   |
