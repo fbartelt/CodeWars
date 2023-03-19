@@ -4,7 +4,7 @@ Welcome to my repository for storing my solutions to CodeWars katas. The purpose
 
 [![My Profile](https://www.codewars.com/users/fbartelt/badges/large)](https://www.codewars.com/users/fbartelt)
 
-<img src="https://img.shields.io/badge/2kyu-%23181717.svg?&style=for-the-badge&logo=python&logoColor=white&logoWidth=" height="35"/> <img src="https://img.shields.io/badge/4kyu-%23181717.svg?&style=for-the-badge&logo=elixir&logoColor=white&logoWidth=" height="35"/> <img src="https://img.shields.io/badge/5kyu-%23181717.svg?&style=for-the-badge&logo=c%2B%2B&logoColor=white&logoWidth=" height="35"/> <img src="https://img.shields.io/badge/7kyu-%23181717.svg?&style=for-the-badge&logo=haskell&logoColor=white&logoWidth=" height="35"/> <img src="https://img.shields.io/badge/8kyu-%23181717.svg?&style=for-the-badge&logo=gnu-bash&logoColor=white&logoWidth=" height="35"/> 
+<img src="https://img.shields.io/badge/2kyu-%23181717.svg?&style=for-the-badge&logo=python&logoColor=white&logoWidth=" height="35"/> <img src="https://img.shields.io/badge/4kyu-%23181717.svg?&style=for-the-badge&logo=elixir&logoColor=white&logoWidth=" height="35"/> <img src="https://img.shields.io/badge/5kyu-%23181717.svg?&style=for-the-badge&logo=c%2B%2B&logoColor=white&logoWidth=" height="35"/> <img src="https://img.shields.io/badge/7kyu-%23181717.svg?&style=for-the-badge&logo=haskell&logoColor=white&logoWidth=" height="35"/> <img src="https://img.shields.io/badge/7kyu-%23181717.svg?&style=for-the-badge&logo=gnu-bash&logoColor=white&logoWidth=" height="35"/> 
 
 ## Amount of completed Katas per Language
 
@@ -14,7 +14,7 @@ Welcome to my repository for storing my solutions to CodeWars katas. The purpose
 | Elixir | 24 |
 | Cpp | 3 |
 | Haskell | 6 |
-| Shell | 5 |
+| Shell | 6 |
 
 ## Amount of completed Katas per Kyu
 
@@ -83,7 +83,7 @@ Welcome to my repository for storing my solutions to CodeWars katas. The purpose
 | 3 | 0 |
 | 4 | 0 |
 | 5 | 0 |
-| 6 | 0 |
+| 6 | 1 |
 | 7 | 3 |
 | 8 | 2 |
 | $\beta$ | 0 |
