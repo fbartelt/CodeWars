@@ -1,0 +1,1 @@
+TZ=Asia/Tokyo date +"%FT%R%z"
